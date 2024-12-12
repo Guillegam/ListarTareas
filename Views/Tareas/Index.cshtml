@@ -1,0 +1,22 @@
+﻿@model List<ListaDeTareas.Models.Tarea>
+
+<h2>Lista de Tareas</h2>
+
+<form asp-action="Agregar" method="post">
+    <input type="text" name="nombre" placeholder="Nueva tarea" />
+    <button type="submit">Agregar</button>
+</form>
+
+<ul>
+@foreach (var tarea in Model)
+{
+    <li>
+        <form asp-action="Eliminar" method="post" style="display:inline">
+            <input type="hidden" name="id" value="@tarea.Id" />
+            <button type="submit">Eliminar</button>
+        </form>
+        @tarea.Nombre
+        <a asp-action="Editar" asp-route-id="@tarea.Id">Editar</a>
+    </li>
+}
+</ul>
